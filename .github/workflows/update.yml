@@ -1,0 +1,31 @@
+name: Update HRRR Northeast Reflectivity
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # every 6 hours
+  workflow_dispatch:        # allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Micromamba
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          micromamba-version: 'latest'
+          environment-file: environment.yml
+          cache-environment: true
+
+      - name: Run HRRR update script
+        shell: bash -l {0}
+        run: micromamba run -n hrrr python update_hrrr.py
+
+      - name: Commit and push new images + viewer
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/ index.html
+          git commit -m "Update: latest HRRR composite reflectivity (auto)" || echo "No changes to commit"
+          git push
