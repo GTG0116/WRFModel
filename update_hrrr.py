@@ -2,6 +2,7 @@ import datetime
 import os
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 from cartopy.feature import NaturalEarthFeature
 import numpy as np
 from herbie import Herbie
@@ -65,8 +66,8 @@ def main():
             states = NaturalEarthFeature(category='cultural', scale='50m',
                                          facecolor='none', name='admin_1_states_provinces')
             ax.add_feature(states, linewidth=0.8, edgecolor='black')
-            ax.add_feature(ccrs.feature.COASTLINE.with_scale('50m'), linewidth=1.2)
-            ax.add_feature(ccrs.feature.BORDERS.with_scale('50m'), linewidth=0.6)
+            ax.add_feature(cfeature.COASTLINE.with_scale('50m'), linewidth=1.2)
+            ax.add_feature(cfeature.BORDERS.with_scale('50m'), linewidth=0.6)
 
             # Titles
             init_str = ds.time.dt.strftime('%Y-%m-%d %H:%M UTC').item()
@@ -143,8 +144,8 @@ def generate_html(init_time, max_fxx):
         
         function updateHour(h) {{
             currentHour = parseInt(h);
-            document.getElementById('main-image').src = `images/hrrr_ne_refc_f${currentHour.toString().padStart(2, '0')}.png`;
-            document.getElementById('hour-label').textContent = `F${currentHour.toString().padStart(2, '0')}`;
+            document.getElementById('main-image').src = `images/hrrr_ne_refc_f${{currentHour.toString().padStart(2, '0')}}.png`;
+            document.getElementById('hour-label').textContent = `F${{currentHour.toString().padStart(2, '0')}}`;
         }}
         
         function prevHour() {{ 
