@@ -25,7 +25,7 @@ def get_refl_cmap():
 def main():
     # Use latest HRRR run (data is usually available ~1-2h after init)
     now = datetime.datetime.now(datetime.timezone.utc)
-    run_time = (now - datetime.timedelta(hours=3)).replace(minute=0, second=0, microsecond=0)
+    run_time = (now - datetime.timedelta(hours=3)).replace(minute=0, second=0, microsecond=0, tzinfo=None)
     print(f"🔄 Using HRRR run: {run_time.strftime('%Y-%m-%d %H:%M UTC')}")
 
     os.makedirs("images", exist_ok=True)
