@@ -43,10 +43,11 @@ def main():
                 model="hrrr",
                 product="sfc",
                 fxx=fxx,
-                search=":REFC:",          # Composite Reflectivity
             )
-            ds = H.xarray()
-            
+            ds = H.xarray(":REFC:")
+            if isinstance(ds, list):
+                ds = ds[0]
+
             # Single variable downloaded
             var_name = list(ds.data_vars.keys())[0]
             data = ds[var_name]
