@@ -28,7 +28,7 @@
             <div class="flex items-center gap-4 mt-6">
                 <button onclick="prevHour()" class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-medium">← Previous</button>
                 <div class="flex-1">
-                    <input type="range" id="hour-slider" min="0" max="-1" value="0" 
+                    <input type="range" id="hour-slider" min="0" max="18" value="0" 
                            oninput="updateHour(this.value)" class="w-full accent-emerald-500">
                 </div>
                 <button onclick="nextHour()" class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-medium">Next →</button>
@@ -44,7 +44,7 @@
 
     <script>
         let currentHour = 0;
-        const maxHour = -1;
+        const maxHour = 18;
         
         function updateHour(h) {
             currentHour = parseInt(h);
