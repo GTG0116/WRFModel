@@ -1,0 +1,13 @@
+name: hrrr
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - cartopy
+  - matplotlib
+  - xarray
+  - cfgrib
+  - eccodes
+  - pip
+  - pip:
+    - herbie-data
